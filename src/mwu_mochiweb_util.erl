@@ -3,7 +3,7 @@
 
 %% @doc Utilities for parsing and quoting.
 
--module(mochiweb_util).
+-module(mwu_mochiweb_util).
 -author('bob@mochimedia.com').
 -export([join/2, quote_plus/1, urlencode/1, parse_qs/1, unquote/1]).
 -export([path_split/1]).
@@ -103,7 +103,7 @@ shell_quote(L) ->
     shell_quote(L, [$\"]).
 
 %% @spec cmd_port([string()], Options) -> port()
-%% @doc open_port({spawn, mochiweb_util:cmd_string(Argv)}, Options).
+%% @doc open_port({spawn, mwu_mochiweb_util:cmd_string(Argv)}, Options).
 cmd_port(Argv, Options) ->
     open_port({spawn, cmd_string(Argv)}, Options).
 
@@ -170,7 +170,7 @@ quote_plus(Int) when is_integer(Int) ->
 quote_plus(Binary) when is_binary(Binary) ->
     quote_plus(binary_to_list(Binary));
 quote_plus(Float) when is_float(Float) ->
-    quote_plus(mochinum:digits(Float));
+    quote_plus(mwu_mochinum:digits(Float));
 quote_plus(String) ->
     quote_plus(String, []).
 
@@ -351,7 +351,7 @@ urlsplit_query([C | Rest], Acc) ->
 %% @spec guess_mime(string()) -> string()
 %% @doc  Guess the mime type of a file by the extension of its filename.
 guess_mime(File) ->
-    case mochiweb_mime:from_extension(filename:extension(File)) of
+    case mwu_mochiweb_mime:from_extension(filename:extension(File)) of
         undefined ->
             "text/plain";
         Mime ->

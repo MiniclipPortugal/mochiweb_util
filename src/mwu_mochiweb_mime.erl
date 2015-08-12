@@ -3,7 +3,7 @@
 
 %% @doc Gives a good MIME type guess based on file extension.
 
--module(mochiweb_mime).
+-module(mwu_mochiweb_mime).
 -author('bob@mochimedia.com').
 -export([from_extension/1]).
 
